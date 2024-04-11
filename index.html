@@ -7,10 +7,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parse DL-BLER, UL-BLER, DL Tput, UL Tpt and draw</title>
+    <title>Parse total DL-BLER, UL-BLER, DL Tput, UL Tpt and draw</title>
     <!-- Include Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
@@ -18,28 +19,30 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.2;
             font-size: 14px;
-        }	
-    </style>	
+        }
+    </style>
 </head>
+
 <body>
-    <h2>Parse DL-BLER, UL-BLER, DL Tput, UL Tpt and draw</h2>
+    <h2>Parse total DL-BLER, UL-BLER, DL Tput, UL Tpt and draw</h2>
 
     <p style="margin: 0;">Author: Dustin_Chen, email: <a href="mailto:Dustin_Chen@compal.com"
             style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com"
             style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
     <ul>
-        <li><strong>Please paste the du_stats_XXX.txt below, then it will draw the DL-BLER, UL-BLER, DL Tput, UL Tpt</strong>
+        <li><strong>Please paste the du_stats_XXX.txt below, then it will draw the DL-BLER, UL-BLER, DL Tput, UL
+                Tpt</strong>
             <ul>
                 <li>DL-BLER = DL-RETX /( DL-NEWTX + DL-RETX)</li>
                 <li>UL-BLER = UL-RETX /( UL-NEWTX + UL-RETX)</li>
-				<li>SCH  DL Tpt </li>
-				<li>UL Tpt</li>
-            <textarea id="dataInput" rows="11" cols="110" placeholder="Paste your data here..."></textarea><br>
+                <li>SCH DL Tpt </li>
+                <li>UL Tpt</li>
+                <textarea id="dataInput" rows="11" cols="110" placeholder="Paste your data here..."></textarea><br>
                 <button onclick="parseData()">Parse and Plot</button>
                 <div id="plot"></div>
-             </ul>		
+            </ul>
         </li>
-    </ul>				
+    </ul>
 
 
     <script>
@@ -62,7 +65,7 @@
                 var line = inputData[i].trim();
                 // Assuming time is available in the same line
                 if (line.includes("GNB DU Statistics") && line.split(" ").length > 4) {
-                    var timeParts = line.split(" ").slice(3).join(" ");
+                    var timeParts = line.split(" ").slice(5, 9).join(" "); // 提取第5到第9个单词，即时间部分
                     time.push(timeParts);
                 }
                 if (line.startsWith("CELL-ID   CELL-DL-BANDWIDTH")) {
@@ -137,13 +140,14 @@
                     side: 'right', // Position the right y-axis on the right side
                     overlaying: 'y', // Overlay the right y-axis on the left y-axis
                     range: [0, Math.max(...dlTpt, ...ulTpt) * 1.2] // Adjust the range of right y-axis
-    },
-    width: 1400, // Specify the width of the plot canvas
-    height: 600 // Specify the height of the plot canvas
+                },
+                width: 1400, // Specify the width of the plot canvas
+                height: 600 // Specify the height of the plot canvas
             };
 
             Plotly.newPlot('plot', data, layout);
         }
     </script>
 </body>
+
 </html>
