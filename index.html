@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parse total DL-BLER, UL-BLER, DL Tput, UL Tpt and draw</title>
+    <title>Draw total DL-BLER, UL-BLER, DL Tput, UL Tpt</title>
     <!-- Include Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
@@ -24,19 +24,18 @@
 </head>
 
 <body>
-    <h2>Parse total DL-BLER, UL-BLER, DL Tput, UL Tpt and draw</h2>
+    <h2>Draw total DL-BLER, UL-BLER, DL Tput, UL Tpt</h2>
 
     <p style="margin: 0;">Author: Dustin_Chen, email: <a href="mailto:Dustin_Chen@compal.com"
             style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com"
             style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
     <ul>
-        <li><strong>Please paste the du_stats_XXX.txt below, then it will draw the DL-BLER, UL-BLER, DL Tput, UL
-                Tpt</strong>
+        <li><strong>Please paste the du_stats_XXX.txt below, then it will draw the total DL-BLER, UL-BLER, DL Tput, UL Tpt</strong>
             <ul>
-                <li>DL-BLER = DL-RETX /( DL-NEWTX + DL-RETX)</li>
-                <li>UL-BLER = UL-RETX /( UL-NEWTX + UL-RETX)</li>
-                <li>SCH DL Tpt </li>
-                <li>UL Tpt</li>
+                <li>total DL-BLER = DL-RETX /( DL-NEWTX + DL-RETX)</li>
+                <li>total UL-BLER = UL-RETX /( UL-NEWTX + UL-RETX)</li>
+                <li>total SCH DL Tpt </li>
+                <li>total UL Tpt</li>
                 <textarea id="dataInput" rows="11" cols="110" placeholder="Paste your data here..."></textarea><br>
                 <button onclick="parseData()">Parse and Plot</button>
                 <div id="plot"></div>
