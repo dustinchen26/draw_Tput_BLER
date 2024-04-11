@@ -145,6 +145,16 @@
                 height: 600 // Specify the height of the plot canvas
             };
 
+    // Dynamically set x-axis tick format based on data length
+    if (time.length > 30) {
+        layout.xaxis.tickmode = 'auto'; // Use auto tick mode for x-axis
+        layout.xaxis.nticks = 30; // Limit the number of ticks to 10
+    } else {
+        layout.xaxis.tickmode = 'array'; // Use array tick mode for x-axis
+        layout.xaxis.tickvals = time; // Set tick values to time array
+        layout.xaxis.ticktext = time; // Set tick text to time array
+    }
+
             Plotly.newPlot('plot', data, layout);
         }
     </script>
