@@ -30,7 +30,8 @@
             style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com"
             style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
     <ul>
-        <li><strong>Please paste the du_stats_XXX.txt below, then it will draw the total DL-BLER, UL-BLER, DL Tput, UL Tpt</strong>
+        <li><strong>Please paste the du_stats_XXX.txt below, then it will draw the total DL-BLER, UL-BLER, DL Tput, UL
+                Tpt</strong>
             <ul>
                 <li>total DL-BLER = DL-RETX /( DL-NEWTX + DL-RETX)</li>
                 <li>total UL-BLER = UL-RETX /( UL-NEWTX + UL-RETX)</li>
@@ -93,7 +94,10 @@
                 y: dlBler,
                 mode: 'lines+markers',
                 name: 'DL-BLER',
-                yaxis: 'y1' // Use the left y-axis
+                yaxis: 'y1', // Use the left y-axis
+                line: {
+                    color: 'blue' // Change DL-BLER line color to blue
+                }
             };
 
             var trace2 = {
@@ -101,7 +105,10 @@
                 y: ulBler,
                 mode: 'lines+markers',
                 name: 'UL-BLER',
-                yaxis: 'y1' // Use the left y-axis
+                yaxis: 'y1', // Use the left y-axis
+                line: {
+                    color: 'green' // Change UL-BLER line color to green
+                }
             };
 
             var trace3 = {
@@ -109,7 +116,10 @@
                 y: dlTpt,
                 mode: 'lines+markers',
                 name: 'DL Tpt',
-                yaxis: 'y2' // Use the right y-axis
+                yaxis: 'y2', // Use the right y-axis
+                line: {
+                    color: 'orange' // Change UL Tpt line color to orange
+                }
             };
 
             var trace4 = {
@@ -117,8 +127,24 @@
                 y: ulTpt,
                 mode: 'lines+markers',
                 name: 'UL Tpt',
-                yaxis: 'y2' // Use the right y-axis
+                yaxis: 'y2', // Use the right y-axis
+                line: {
+                    color: 'red' // Change DL Tpt line color to red
+                }
             };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             var data = [trace1, trace2, trace3, trace4];
 
@@ -144,15 +170,15 @@
                 height: 600 // Specify the height of the plot canvas
             };
 
-    // Dynamically set x-axis tick format based on data length
-    if (time.length > 30) {
-        layout.xaxis.tickmode = 'auto'; // Use auto tick mode for x-axis
-        layout.xaxis.nticks = 30; // Limit the number of ticks to 10
-    } else {
-        layout.xaxis.tickmode = 'array'; // Use array tick mode for x-axis
-        layout.xaxis.tickvals = time; // Set tick values to time array
-        layout.xaxis.ticktext = time; // Set tick text to time array
-    }
+            // Dynamically set x-axis tick format based on data length
+            if (time.length > 30) {
+                layout.xaxis.tickmode = 'auto'; // Use auto tick mode for x-axis
+                layout.xaxis.nticks = 30; // Limit the number of ticks to 10
+            } else {
+                layout.xaxis.tickmode = 'array'; // Use array tick mode for x-axis
+                layout.xaxis.tickvals = time; // Set tick values to time array
+                layout.xaxis.ticktext = time; // Set tick text to time array
+            }
 
             Plotly.newPlot('plot', data, layout);
         }
