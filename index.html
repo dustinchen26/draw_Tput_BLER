@@ -35,7 +35,7 @@
             <ul>
                 <li>total DL-BLER = DL-RETX /( DL-NEWTX + DL-RETX)</li>
                 <li>total UL-BLER = UL-RETX /( UL-NEWTX + UL-RETX)</li>
-                <li>total SCH DL Tpt </li>
+                <li>total EGTP DL Tpt </li>
                 <li>total UL Tpt</li>
                 <textarea id="dataInput" rows="11" cols="110" placeholder="Paste your data here..."></textarea><br>
                 <button onclick="parseData()">Parse and Plot</button>
@@ -80,7 +80,7 @@
                     var ulReTx = parseFloat(ulParts[9]);
                     var bler = ulReTx / (ulNewTx + ulReTx);
                     ulBler.push(bler);
-                } else if (line.startsWith("SCH  DL Tpt")) {
+                } else if (line.startsWith("EGTP DL Tpt")) {
                     var dlTptValue = parseFloat(line.split(":")[1]);
                     dlTpt.push(dlTptValue);
                     var ulTptValue = parseFloat(line.split("UL Tpt")[1]);
